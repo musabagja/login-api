@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3003
 const cors = require('cors')
 const errorHandler = require('./middlewares/errorHandler')
 
-mongoose.connect('mongodb://127.0.0.1:27017/scan-app?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://ikhrom:wicaksono@cluster0-shard-00-00.ynd03.mongodb.net:27017,cluster0-shard-00-01.ynd03.mongodb.net:27017,cluster0-shard-00-02.ynd03.mongodb.net:27017/LoginApi?ssl=true&replicaSet=atlas-cnzpgu-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
@@ -18,7 +18,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(routes)
+app.use('/api/',routes)
 app.use(errorHandler)
 
 app.listen(PORT, () => {
